@@ -20,7 +20,7 @@
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSingleton<ICosmosDbService>(InitializeCosmosClientInstanceAsync(Configuration.GetSection("CosmosDb")).GetAwaiter().GetResult());
+            //services.AddSingleton<ICosmosDbService>(InitializeCosmosClientInstanceAsync(Configuration.GetSection("CosmosDb")).GetAwaiter().GetResult());
             services.AddSingleton<IOrganizationService>(InitializeOrganizationClientInstanceAsync(Configuration.GetSection("Organization")).GetAwaiter().GetResult());
             services.AddSingleton<IUserService>(InitializeUserClientInstanceAsync(Configuration.GetSection("User")).GetAwaiter().GetResult());
         }
@@ -67,7 +67,7 @@
         /// Creates a Cosmos DB database and a container with the specified partition key. 
         /// </summary>
         /// <returns></returns>
-        private static async Task<CosmosDbService> InitializeCosmosClientInstanceAsync(IConfigurationSection configurationSection)
+        /*private static async Task<CosmosDbService> InitializeCosmosClientInstanceAsync(IConfigurationSection configurationSection)
         {
             string databaseName = configurationSection.GetSection("DatabaseName").Value;
             string containerName = configurationSection.GetSection("ContainerName").Value;
@@ -80,6 +80,7 @@
 
             return cosmosDbService;
         }
+        */
         // </InitializeCosmosClientInstanceAsync>
         // <InitializeCosmosClientInstanceAsync>        
         /// <summary>
