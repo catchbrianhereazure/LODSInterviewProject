@@ -1,4 +1,4 @@
-﻿namespace LODSInterviewProject
+﻿namespace LODSInterviewProject.Services
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -73,20 +73,5 @@
 
             await this._container.UpsertItemAsync<Organization>(item, new PartitionKey(id));
         }
-
-        public async Task AddUser(string id, Organization item, LODSInterviewProject.Models.User user)
-        {
-            item.Users.Add(user);
-
-            await UpdateAsync(id, item);
-        }
-
-        public async Task RemoveUser(string id, Organization item, LODSInterviewProject.Models.User user)
-        {
-            item.Users.Add(user);
-
-            await UpdateAsync(id, item);
-        }
-
     }
 }

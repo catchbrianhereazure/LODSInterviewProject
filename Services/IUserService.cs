@@ -1,4 +1,4 @@
-﻿namespace LODSInterviewProject
+﻿namespace LODSInterviewProject.Services
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

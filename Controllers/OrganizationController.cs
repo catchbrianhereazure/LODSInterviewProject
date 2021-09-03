@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
     using LODSInterviewProject.Models;
+    using LODSInterviewProject.Services;
 
     public class OrganizationController : Controller
     {
@@ -105,23 +106,6 @@
 
         [ActionName("AddUsers")]
         public async Task<ActionResult> AddUsersAsync(string id)
-        {
-            return View(await _organizationService.GetAsync(id));
-        }
-
-        /*[ActionName("CreateUser")]
-        public async Task<ActionResult> CreateUserAsync(string id, [Bind("Id", "FirstName", "LastName")] User item)
-        {
-            Organization org = await _organizationService.GetAsync(id);
-            org.Users.Add(item);
-            await _organizationService.UpdateAsync(id, org);
-
-            return RedirectToAction("AddUsers");
-        }
-        */
-
-        [ActionName("RemoveUsers")]
-        public async Task<ActionResult> RemoveUsersAsync(string id)
         {
             return View(await _organizationService.GetAsync(id));
         }

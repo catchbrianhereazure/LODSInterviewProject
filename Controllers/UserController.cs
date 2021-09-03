@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
     using LODSInterviewProject.Models;
+    using LODSInterviewProject.Services;
 
     public class UserController : Controller
     {

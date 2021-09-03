@@ -1,4 +1,4 @@
-﻿namespace LODSInterviewProject
+﻿namespace LODSInterviewProject.Services
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -11,7 +11,5 @@
         Task AddAsync(Organization item);
         Task UpdateAsync(string id, Organization item);
         Task DeleteAsync(string id);
-        Task AddUser(string id, Organization item, LODSInterviewProject.Models.User user);
-        Task RemoveUser(string id, Organization item, LODSInterviewProject.Models.User user);
     }
 }

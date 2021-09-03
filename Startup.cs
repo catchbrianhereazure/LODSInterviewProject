@@ -6,6 +6,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using LODSInterviewProject.Services;
 
     public class Startup
     {
@@ -52,37 +53,9 @@
                     name: "default",
                     pattern: "{controller=Organization}/{action=Index}/{id?}");
             });
-
-            /*app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Item}/{action=Index}/{id?}");
-            });
-            */
         }
 
-        // <InitializeCosmosClientInstanceAsync>        
-        /// <summary>
-        /// Creates a Cosmos DB database and a container with the specified partition key. 
-        /// </summary>
-        /// <returns></returns>
-        /*private static async Task<CosmosDbService> InitializeCosmosClientInstanceAsync(IConfigurationSection configurationSection)
-        {
-            string databaseName = configurationSection.GetSection("DatabaseName").Value;
-            string containerName = configurationSection.GetSection("ContainerName").Value;
-            string account = configurationSection.GetSection("Account").Value;
-            string key = configurationSection.GetSection("Key").Value;
-            Microsoft.Azure.Cosmos.CosmosClient client = new Microsoft.Azure.Cosmos.CosmosClient(account, key);
-            CosmosDbService cosmosDbService = new CosmosDbService(client, databaseName, containerName);
-            Microsoft.Azure.Cosmos.DatabaseResponse database = await client.CreateDatabaseIfNotExistsAsync(databaseName);
-            await database.Database.CreateContainerIfNotExistsAsync(containerName, "/id");
-
-            return cosmosDbService;
-        }
-        */
-        // </InitializeCosmosClientInstanceAsync>
-        // <InitializeCosmosClientInstanceAsync>        
+        // <InitializeOrganizationClientInstanceAsync>        
         /// <summary>
         /// Creates a Cosmos DB database and a container with the specified partition key. 
         /// </summary>
@@ -100,8 +73,9 @@
 
             return organizationService;
         }
-        // </InitializeCosmosClientInstanceAsync>
-        // <InitializeCosmosClientInstanceAsync>        
+        // </InitializeOrganizationClientInstanceAsync>
+
+        // <InitializeUserClientInstanceAsync>        
         /// <summary>
         /// Creates a Cosmos DB database and a container with the specified partition key. 
         /// </summary>
@@ -119,6 +93,6 @@
 
             return userService;
         }
-        // </InitializeCosmosClientInstanceAsync>
+        // </InitializeUserClientInstanceAsync>
     }
 }
