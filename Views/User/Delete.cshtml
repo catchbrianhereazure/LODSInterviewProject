@@ -3,8 +3,8 @@
 @{
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var Id = ((User)ViewData["User"]).Id;
-    var OrgId = ((User)ViewData["User"]).OrganizationId;
+    //var Id = ((User)ViewData["User"]).Id;
+    //var OrgId = ((User)ViewData["User"]).OrganizationId;
 }
 
 
@@ -57,7 +57,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to Organization Users List", "Index", new { id = @OrgId })
+            @Html.ActionLink("Back to Organization Users List", "Index", new { id = Model.OrganizationId })
         </div>
     }
 </div>

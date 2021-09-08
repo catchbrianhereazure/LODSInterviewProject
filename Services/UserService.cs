@@ -23,6 +23,8 @@
         public async Task AddAsync(LODSInterviewProject.Models.User item)
         {
             await this._container.CreateItemAsync<LODSInterviewProject.Models.User>(item, new PartitionKey(item.Id));
+            await EmailServiceProvider.Execute(item.Email, string.Format("{0} {1}", item.FirstName, item.LastName));
+            //await EmailServiceProvider.Execute("catchbrianhere@gmail.com", "B Buikema");
         }
 
         public async Task DeleteAsync(string id)

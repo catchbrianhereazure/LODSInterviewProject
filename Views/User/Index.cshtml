@@ -7,9 +7,7 @@
 
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.OrganizationId)
-        </th>
+        <th></th>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
         </th>
@@ -29,7 +27,8 @@
     {
 <tr>
     <td>
-        @Html.DisplayFor(modelItem => item.OrganizationId)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(modelItem => item.OrganizationId)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.FirstName)
