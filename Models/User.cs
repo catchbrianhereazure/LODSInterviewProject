@@ -28,8 +28,5 @@
         [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Email is not valid.")]
         [JsonProperty(PropertyName = "email")]
         public string Email { get; set; }
-
-        [JsonProperty(PropertyName = "isComplete")]
-        public bool Completed { get; set; }
     }
 }

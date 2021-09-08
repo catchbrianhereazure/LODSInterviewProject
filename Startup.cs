@@ -21,7 +21,6 @@
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            //services.AddSingleton<ICosmosDbService>(InitializeCosmosClientInstanceAsync(Configuration.GetSection("CosmosDb")).GetAwaiter().GetResult());
             services.AddSingleton<IOrganizationService>(InitializeOrganizationClientInstanceAsync(Configuration.GetSection("Organization")).GetAwaiter().GetResult());
             services.AddSingleton<IUserService>(InitializeUserClientInstanceAsync(Configuration.GetSection("User")).GetAwaiter().GetResult());
         }

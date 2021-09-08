@@ -1,7 +1,7 @@
 ﻿@model LODSInterviewProject.Models.User
 
 @{  Layout = "~/Views/Shared/_Layout.cshtml";
-//    var OrgId = ((Organization)ViewData["Organization"]).Id;
+    var OrgId = ((Organization)ViewData["Organization"]).Id;
 }
 
 <h2>Create a New Organization User</h2>
@@ -42,16 +42,6 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Completed, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <div class="checkbox">
-                @Html.EditorFor(model => model.Completed)
-                @Html.ValidationMessageFor(model => model.Completed, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-
-    <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Create" class="btn btn-default" />
         </div>
@@ -59,6 +49,6 @@
 </div>}
 
 <div>
-    @Html.ActionLink("Back to Organization Users List", "Index", new { id = Model.OrganizationId })
+    @Html.ActionLink("Back to Organization Users List", "Index", new { id = @OrgId })
 </div>
 <script src="~/bundles/jqueryval"></script>

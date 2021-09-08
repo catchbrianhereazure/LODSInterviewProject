@@ -14,13 +14,6 @@
             _userService = cosmosDbService;
         }
 
-        /*[ActionName("Index")]
-        public async Task<IActionResult> Index()
-        {
-            return View(await _userService.GetAllAsync("SELECT * FROM c"));
-        }
-        */
-
         [ActionName("Index")]
         public async Task<IActionResult> Index([Bind("Id")] LODSInterviewProject.Models.Organization item)
         {
@@ -38,9 +31,6 @@
             User user = new User
             {
                 OrganizationId = item.Id,
-                //OrganizationId = ((Organization)ViewData["Organization"]).Id,
-                FirstName = "TestFN",
-                LastName = "TestLN"
             };
 
             return View(user);
@@ -49,14 +39,11 @@
         [HttpPost]
         [ActionName("Create")]
         [ValidateAntiForgeryToken]
-        //public async Task<ActionResult> CreateAsync([Bind("FirstName,LastName,Email,Completed")] LODSInterviewProject.Models.User item)
         public async Task<ActionResult> CreateAsync([Bind("OrganizationId,FirstName,LastName,Email,Completed")] LODSInterviewProject.Models.User item)
         {
             if (ModelState.IsValid)
             {
-                //ViewData["Organization"] = item;
                 item.Id = Guid.NewGuid().ToString();
-                //item.OrganizationId = ((Organization)ViewData["Organization"]).Id;
                 await _userService.AddAsync(item);
                 return RedirectToAction("Index", new { id = item.OrganizationId });
             }

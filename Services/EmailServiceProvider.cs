@@ -9,7 +9,9 @@ namespace LODSInterviewProject.Services
     {
         public static async Task Execute(String toEmail, String toName)
         {
-            var apiKey = "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"; // Environment.GetEnvironmentVariable("NAME_OF_THE_ENVIRONMENT_VARIABLE_FOR_YOUR_SENDGRID_KEY");
+            
+            var apiKey = "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"; // Environment.GetEnvironmentVariable("NAME_OF_THE_ENVIRONMENT_VARIABLE_FOR_YOUR_SENDGRID_KEY");
+            //var apiKey = "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"; // Environment.GetEnvironmentVariable("NAME_OF_THE_ENVIRONMENT_VARIABLE_FOR_YOUR_SENDGRID_KEY");
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress("catchazurehere@gmail.com", "B Buikema");
             var subject = "New Notification";

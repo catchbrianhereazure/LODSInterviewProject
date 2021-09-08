@@ -66,11 +66,6 @@
                 LastName= "LName"
             };
 
-            if (item.User != null)
-            {
-                item.Users.Add(item.User);
-            }
-
             await this._container.UpsertItemAsync<Organization>(item, new PartitionKey(id));
         }
     }
