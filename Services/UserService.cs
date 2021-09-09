@@ -10,21 +10,23 @@
 
     public class UserService : IUserService
     {
-        private Container _container;
+        private readonly Container _container;
+        private readonly IEmailServiceProvider _emailServiceProvider;
 
         public UserService(
             CosmosClient dbClient,
+            IEmailServiceProvider emailServiceProvider,
             string databaseName,
             string containerName)
         {
             this._container = dbClient.GetContainer(databaseName, containerName);
+            _emailServiceProvider = emailServiceProvider;
         }
 
         public async Task AddAsync(LODSInterviewProject.Models.User item)
         {
             await this._container.CreateItemAsync<LODSInterviewProject.Models.User>(item, new PartitionKey(item.Id));
-            await EmailServiceProvider.Execute(item.Email, string.Format("{0} {1}", item.FirstName, item.LastName));
-            //await EmailServiceProvider.Execute("catchbrianhere@gmail.com", "B Buikema");
+            await _emailServiceProvider.Execute(item.Email, string.Format("{0} {1}", item.FirstName, item.LastName));
         }
 
         public async Task DeleteAsync(string id)

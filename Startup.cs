@@ -86,7 +86,18 @@
             string account = configurationSection.GetSection("Account").Value;
             string key = configurationSection.GetSection("Key").Value;
             Microsoft.Azure.Cosmos.CosmosClient client = new Microsoft.Azure.Cosmos.CosmosClient(account, key);
-            UserService userService = new UserService(client, databaseName, containerName);
+
+            string apiKey = configurationSection.GetSection("Email_APIKey").Value;
+            string subject = configurationSection.GetSection("Email_Subject").Value;
+            string from = configurationSection.GetSection("Email_From").Value;
+            string fromName = configurationSection.GetSection("Email_FromName").Value;
+            string plainText = configurationSection.GetSection("Email_PlainText").Value;
+            string htmlContent = configurationSection.GetSection("Email_HtmlContent").Value;
+
+            IEmailServiceProvider emailServiceProvider = new EmailServiceProvider(apiKey, subject, from, fromName, plainText, htmlContent);
+
+            UserService userService = new UserService(client, emailServiceProvider, databaseName, containerName);
+            
             Microsoft.Azure.Cosmos.DatabaseResponse database = await client.CreateDatabaseIfNotExistsAsync(databaseName);
             await database.Database.CreateContainerIfNotExistsAsync(containerName, "/id");
 

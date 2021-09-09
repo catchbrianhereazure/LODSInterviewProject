@@ -5,19 +5,34 @@ using System.Threading.Tasks;
 
 namespace LODSInterviewProject.Services
 {
-    public class EmailServiceProvider
+    public class EmailServiceProvider : IEmailServiceProvider
     {
-        public static async Task Execute(String toEmail, String toName)
+        protected String _apiKey;
+        protected String _subject;
+        protected String _from;
+        protected String _fromName;
+        protected String _plainText;
+        protected String _htmlContent;
+
+        public EmailServiceProvider(String apiKey, String subject, String from, String fromName, String plainText, String htmlContent)
         {
-            
-            var apiKey = "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"; // Environment.GetEnvironmentVariable("NAME_OF_THE_ENVIRONMENT_VARIABLE_FOR_YOUR_SENDGRID_KEY");
-            //var apiKey = "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"; // Environment.GetEnvironmentVariable("NAME_OF_THE_ENVIRONMENT_VARIABLE_FOR_YOUR_SENDGRID_KEY");
-            var client = new SendGridClient(apiKey);
-            var from = new EmailAddress("catchazurehere@gmail.com", "B Buikema");
-            var subject = "New Notification";
+            _apiKey = apiKey;
+            _subject = subject;
+            _from = from;
+            _fromName = fromName;
+            _plainText = plainText;
+            _htmlContent = htmlContent;
+        }
+
+        public async Task Execute(String toEmail, String toName)
+        {
+            var client = new SendGridClient(_apiKey);
+            var from = new EmailAddress(_from, _fromName);
+            var subject = _subject;
             var to = new EmailAddress(toEmail, toName);
-            var plainTextContent = "You have been added to an organization.";
-            var htmlContent = "<strong>You have been added to an organization.</strong>";
+            var plainTextContent = _plainText;
+            var htmlContent = _htmlContent;
+
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             var response = await client.SendEmailAsync(msg);
         }
