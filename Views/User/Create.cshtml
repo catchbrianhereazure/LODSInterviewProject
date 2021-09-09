@@ -1,7 +1,8 @@
 ﻿@model LODSInterviewProject.Models.User
 
 @{  Layout = "~/Views/Shared/_Layout.cshtml";
-    var OrgId = ((Organization)ViewData["Organization"]).Id;
+    var OrgId = ViewData["OrganizationId"];
+    //var OrgId = ((Organization)ViewData["OrganizationId"]).Id;
 }
 
 <h2>Create a New Organization User</h2>

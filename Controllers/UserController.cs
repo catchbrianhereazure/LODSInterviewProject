@@ -27,7 +27,7 @@
         [ActionName("Create")]
         public IActionResult Create([Bind("Id")] LODSInterviewProject.Models.Organization item)
         {
-            ViewData["Organization"] = item;
+            ViewData["OrganizationId"] = item.Id;
             User user = new User
             {
                 OrganizationId = item.Id,
@@ -48,6 +48,7 @@
                 return RedirectToAction("Index", new { id = item.OrganizationId });
             }
 
+            ViewData["OrganizationId"] = item.OrganizationId;
             return View(item);
         }
 

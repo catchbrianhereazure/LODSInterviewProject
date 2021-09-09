@@ -23,10 +23,11 @@
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
+        [JsonProperty(PropertyName = "email")]
         [DataType(DataType.EmailAddress)]
         [Required(ErrorMessage = "Please enter Email Address")]
         [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Email is not valid.")]
-        [JsonProperty(PropertyName = "email")]
+        [Display(Name = "Email Address")]
         public string Email { get; set; }
     }
 }
